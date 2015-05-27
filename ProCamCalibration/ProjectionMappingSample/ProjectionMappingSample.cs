@@ -182,7 +182,7 @@ namespace RoomAliveToolkit
                     deviceContext.ClearRenderTargetView(userViewRenderTargetView, Color4.Black);
                     deviceContext.ClearDepthStencilView(userViewDepthStencilView, DepthStencilClearFlags.Depth, 1, 0);
 
-                    SharpDX.Vector3 headPosition =  new SharpDX.Vector3(0f, 1.1f, -1.4f); // may need to change this default
+                    SharpDX.Vector3 headPosition =  new SharpDX.Vector3(0f, 0.2f, -0.8f); // may need to change this default
 
                     if (localHeadTrackingEnabled)
                     {
@@ -196,7 +196,8 @@ namespace RoomAliveToolkit
                             float dz = handLeftCameraSpacePoint.Z - handRightCameraSpacePoint.Z;
                             distanceSquared = dx * dx + dy * dy + dz * dz;
                         }
-                        var transform = SharpDX.Matrix.RotationY((float)Math.PI) * SharpDX.Matrix.Translation(-0.25f, 0.45f, 0);
+                        //var transform = SharpDX.Matrix.RotationY((float)Math.PI) * SharpDX.Matrix.Translation(-0.25f, 0.45f, 0);
+                        var transform = SharpDX.Matrix.Translation(-0.12f, 0.0f, 0.05f) * SharpDX.Matrix.RotationY((float)Math.PI) * SharpDX.Matrix.RotationX(0.2268f);
                         headPosition = SharpDX.Vector3.TransformCoordinate(headPosition, transform);
 
                         if (trackingValid && (distanceSquared < 0.02f) && (alpha > 1))
@@ -254,7 +255,7 @@ namespace RoomAliveToolkit
                     if (threeDObjectEnabled)
                     {
                         var world = SharpDX.Matrix.Scaling(1.0f) * SharpDX.Matrix.RotationY(90.0f / 180.0f * (float)Math.PI) *
-                            SharpDX.Matrix.RotationX(-40.0f / 180.0f * (float)Math.PI) * SharpDX.Matrix.Translation(0, 0.7f, 0.0f);
+                            SharpDX.Matrix.RotationX(-40.0f / 180.0f * (float)Math.PI) * SharpDX.Matrix.Translation(0, 0.2f, 1.7f);
 
                         var pointLight = new PointLight();
                         pointLight.position = new Vector3(0, 2, 0);
@@ -381,8 +382,8 @@ namespace RoomAliveToolkit
                         else
                         {
                             headCameraSpacePoint.X = 0f;
-                            headCameraSpacePoint.Y = 0.3f;
-                            headCameraSpacePoint.Z = 1.5f;
+                            headCameraSpacePoint.Y = 0.2f;
+                            headCameraSpacePoint.Z = 0.8f;
 
                             trackingValid = false;
                         }
